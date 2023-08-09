@@ -1,0 +1,200 @@
+%Affine cipher
+%To enter digit enter each alphabet between single qoute
+%For Example 'A' 'B' 'Z' for space ' '
+clc
+choice=input('Press 1 for encryption and 2 for decryption:');
+switch choice
+    case 1
+      d=2;
+      %gcd(A,26)=1 for unique solution % Corollary of Theorem 4.7
+      %David M. Burton,Elementary Number Theory, 7th edition, page 77
+      while d~=1
+         A=input('Enter the value of A such that gcd(A,26)=1    :');            
+         d=gcd(A,26);
+      end
+      B=input('Enter the value of B:');
+      
+      %encryption coding
+      fprintf('Enter plain text in capital letters (Enter e to end your text and press enter after inserting each alphabet):\n')
+      v=zeros(1,100);
+      i=1;
+      z=1;
+        while v(z)~=101
+            v(i)=input('');
+            if v(i)==32
+                v(i)=v(i)+65;
+            elseif v(i)==101
+                v(i)=v(i)+65;
+            end
+            v(i)=v(i)-65;
+            z=i;
+            i=i+1;
+        end
+      fprintf('\n\n')  
+      i=i-2;  %length of the vector
+        for j=1:i
+            v(j)=A*v(j)+B;
+            if v(j)==A*32+B
+                fprintf('\n')
+            else
+                v(j)=rem(v(j),26); 
+                if v(j)==0
+                    disp('A')
+                elseif  v(j)==1
+                    disp('B')
+                elseif  v(j)==2
+                    disp('C')
+                elseif  v(j)==3
+                    disp('D')
+                elseif  v(j)==4
+                    disp('E')
+                elseif  v(j)==5
+                    disp('F')
+                elseif  v(j)==6
+                    disp('G')
+                elseif  v(j)==7
+                    disp('H')
+                elseif  v(j)==8
+                    disp('I')
+                elseif  v(j)==9
+                    disp('J')
+                elseif  v(j)==10
+                    disp('K')
+                elseif  v(j)==11
+                    disp('L')
+                elseif  v(j)==12
+                    disp('M')
+                elseif  v(j)==13
+                    disp('N')
+                elseif  v(j)==14
+                    disp('O')
+                elseif  v(j)==15
+                    disp('P')
+                elseif  v(j)==16
+                    disp('Q')
+                elseif  v(j)==17
+                    disp('R')
+                elseif  v(j)==18
+                    disp('S')
+                elseif  v(j)==19
+                    disp('T')
+                elseif  v(j)==20
+                    disp('U')
+                elseif  v(j)==21
+                    disp('V')
+                elseif  v(j)==22
+                    disp('W')
+                elseif  v(j)==23
+                    disp('X')
+                elseif  v(j)==24
+                    disp('Y')
+                elseif  v(j)==25
+                    disp('Z')
+                end
+            end
+        end
+        
+                
+
+    case 2      
+      d=2;
+      %gcd(A,26)=1 for unique solution % Corollary of Theorem 4.7
+      %David M. Burton,Elementary Number Theory, 7th edition, page 77
+      while d~=1
+         A=input('Enter the value of A such that gcd(A,26)=1   :');               
+         d=gcd(A,26);
+      end
+      B=input('Enter the value of B:');
+      
+      
+      C=0;
+      while rem(A*C-1,26)~=0
+          C=C+1;
+      end
+      fprintf('Enter the cipher text in capital letters (press e to end your text and press enter after each alphabet):\n')
+      v=zeros(1,100);
+      i=1;
+      z=1;
+      while v(z)~=101
+          v(i)=input('');
+          if v(i)==32
+            v(i)=v(i)+65;
+          elseif v(i)==101
+            v(i)=v(i)+65;
+          end
+          v(i)=v(i)-65;
+          z=i;
+          i=i+1;
+      end
+      fprintf('\n\n')
+      i=i-2;  %length of the vector
+      for j=1:i
+        v(j)=C*(v(j)-B);
+        if v(j)==C*(32-B)
+            fprintf('\n')
+        else
+            while v(j)<0
+                v(j)=v(j)+26;
+            end
+            v(j)=rem(v(j),26); 
+            if v(j)==0
+                disp('A')
+            elseif  v(j)==1
+                disp('B')
+            elseif  v(j)==2
+                disp('C')
+            elseif  v(j)==3
+                disp('D')
+            elseif  v(j)==4
+                disp('E')
+            elseif  v(j)==5
+                disp('F')
+            elseif  v(j)==6
+                disp('G')
+            elseif  v(j)==7
+                disp('H')
+            elseif  v(j)==8
+                disp('I')
+            elseif  v(j)==9
+                disp('J')
+            elseif  v(j)==10
+                disp('K')
+            elseif  v(j)==11
+                disp('L')
+            elseif  v(j)==12
+                disp('M')
+            elseif  v(j)==13
+                disp('N')
+            elseif  v(j)==14
+                disp('O')
+            elseif  v(j)==15
+                disp('P')
+            elseif  v(j)==16
+                disp('Q')
+            elseif  v(j)==17
+                disp('R')
+            elseif  v(j)==18
+                disp('S')
+            elseif  v(j)==19
+                disp('T')
+            elseif  v(j)==20
+                disp('U')
+            elseif  v(j)==21
+                disp('V')
+            elseif  v(j)==22
+                disp('W')
+            elseif  v(j)==23
+                disp('X')
+            elseif  v(j)==24
+                disp('Y')
+            elseif  v(j)==25
+                disp('Z')
+            end
+        end
+      end
+      
+        
+
+     otherwise
+        disp('Wrong choice.')
+end
